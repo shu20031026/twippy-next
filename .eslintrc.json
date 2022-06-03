@@ -28,49 +28,10 @@
     "prettier"
   ],
   "rules": {
-    "react/prop-types": "off",
-    "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off",
-    "@typescript-eslint/ban-types": "off",
-    "react/no-unescaped-entities": "off",
-    "react/display-name": "off",
-    "semi": "error",
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/array-type": [
-      "error",
-      {
-        "default": "array-simple"
-      }
-    ],
-    "@typescript-eslint/naming-convention": [
-      "error",
-      {
-        "selector": ["class", "typeAlias", "enum"],
-        "format": ["PascalCase"]
-      },
-      {
-        "selector": ["function", "method"],
-        "format": ["camelCase"]
-      },
-      {
-        "selector": ["parameter"],
-        "format": ["camelCase", "PascalCase"],
-        "leadingUnderscore": "allow"
-      },
-      {
-        "selector": ["variable"],
-        "format": ["camelCase", "PascalCase", "UPPER_CASE"]
-      },
-      {
-        "selector": "interface",
-        "format": ["PascalCase"],
-        "custom": {
-          "regex": "^I[A-Z]",
-          "match": false
-        }
-      }
-    ]
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/ban-ts-comment": "off"
   }
 }
