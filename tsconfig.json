@@ -16,9 +16,10 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "~/*":["src/*"],
-      "/*":["*"]
-    }
+      "~/*": ["src/*"],
+      "/*": ["*"]
+    },
+    "types": ["@emotion/react/types/css-prop"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
