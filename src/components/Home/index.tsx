@@ -4,7 +4,14 @@ import type { NextPage } from 'next'
 const HomePage: NextPage = () => {
   return (
     <>
-      <div>hoge</div>
+      <div>
+        <div>
+          <h1>Twippy</h1>
+        </div>
+        <div>description</div>
+        <div>入力フォーム</div>
+        <button>ゲーム開始</button>
+      </div>
     </>
   )
 }
