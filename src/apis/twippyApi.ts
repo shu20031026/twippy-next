@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { tweetsObj } from '~/types/tweetDataTypes'
 
 const twippyAxios = axios.create({
   baseURL: 'http://localhost:3000/api/proxy',
@@ -7,6 +8,6 @@ const twippyAxios = axios.create({
 export const twippyApi = {
   fetchTweets: async (screenName: string) => {
     const data = await twippyAxios.get(`/tweets?name=${screenName}`)
-    return data
+    return data.data
   },
 }
