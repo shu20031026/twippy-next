@@ -2,15 +2,19 @@ import React, { useState } from 'react'
 import type { NextPage } from 'next'
 import { twippyApi } from '~/apis/twippyApi'
 import { tweetsObj } from '~/types/tweetDataTypes'
+import { useSetRecoilState } from 'recoil'
+import { tweetDataState } from '~/grobalStates/atoms'
+import Link from 'next/link'
 
 const HomePage: NextPage = () => {
-  const [tweetsData, setTweetsData] = useState<tweetsObj>()
-  const MOCK_USER = 'fukke0906'
+  const [userName, setUserName] = useState<string>('')
+  const setTweetData = useSetRecoilState<tweetsObj>(tweetDataState)
 
   const fetchUserData = async (screenName: string) => {
     try {
       const fetchData = await twippyApi.fetchTweets(screenName)
-      setTweetsData(fetchData)
+      setTweetData(fetchData)
+      console.log(fetchData)
     } catch (e) {
       console.log(e)
       window.alert(
@@ -26,9 +30,15 @@ const HomePage: NextPage = () => {
           <h1>Twippy</h1>
         </div>
         <div>description</div>
-        <div>入力フォーム</div>
-        <button onClick={() => fetchUserData(MOCK_USER)}>ゲーム開始</button>
-        <div>{JSON.stringify(tweetsData)}</div>
+        <input
+          onChange={(e) => {
+            setUserName(e.target.value)
+          }}
+        />
+        <button onClick={() => fetchUserData(userName)}>ゲーム開始</button>
+        <Link href="/game">
+          <button>/geme</button>
+        </Link>
       </div>
     </>
   )

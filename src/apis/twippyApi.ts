@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { tweetsObj } from '~/types/tweetDataTypes'
 
 const twippyAxios = axios.create({
   baseURL: 'http://localhost:3000/api/proxy',
