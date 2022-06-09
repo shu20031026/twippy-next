@@ -34,12 +34,14 @@ const GamePage: NextPage = () => {
 
   const judge = () => {
     if (form === tweets[tweetNumber]) {
-      if (tweetNumber === tweets.length) {
-        setIsOpenModal(true)
+      if (questionNumber === tweets.length) {
+        setIsOpenModal((isOpenModal) => !isOpenModal)
+        console.log(isOpenModal)
       } else {
         setTweetNumber((tweetNumber) => tweetNumber + 1)
         setForm('')
         console.log('Success')
+        console.log(isOpenModal)
       }
       console.log('Success')
     } else {
@@ -50,38 +52,42 @@ const GamePage: NextPage = () => {
   return (
     <>
       <div>
-        <p>Twippy</p>
-        <p>{questionNumber}問目</p>
-        <p>秒</p>
-      </div>
-      <div>
         <div>
-          <div>
-            <img src={fetchedTweetData?.icon} alt="" />
-          </div>
-          <div>
-            <p>{fetchedTweetData?.name}のツイート</p>
-            <p>{tweets[tweetNumber]}</p>
-          </div>
+          <p>Twippy</p>
+          <p>{questionNumber}問目</p>
+          <p>秒</p>
         </div>
         <div>
           <div>
-            <img src={fetchedTweetData?.icon} alt="" />
+            <div>
+              <img src={fetchedTweetData?.icon} alt="" />
+            </div>
+            <div>
+              <p>{fetchedTweetData?.name}のツイート</p>
+              <p>{tweets[tweetNumber]}</p>
+            </div>
           </div>
           <div>
-            <p>{fetchedTweetData?.name}のツイート</p>
-            <textarea
-              placeholder={'入力してください'}
-              value={form}
-              onChange={(e) => {
-                setForm(e.target.value)
-              }}
-            />
+            <div>
+              <img src={fetchedTweetData?.icon} alt="" />
+            </div>
+            <div>
+              <p>{fetchedTweetData?.name}のツイート</p>
+              <textarea
+                placeholder={'入力してください'}
+                value={form}
+                onChange={(e) => {
+                  setForm(e.target.value)
+                }}
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <div>
-        <button onClick={() => judge()}>判定</button>
+        <div>
+          <button onClick={() => judge()}>判定</button>
+        </div>
+        {/* modal */}
+        {isOpenModal && <div>modal</div>}
       </div>
     </>
   )
