@@ -83,9 +83,11 @@ const GamePage: NextPage = () => {
             </div>
           </div>
         </div>
-        <div>
-          <button onClick={() => judge()}>判定</button>
-        </div>
+        {!isOpenModal && (
+          <div>
+            <button onClick={() => judge()}>判定</button>
+          </div>
+        )}
         {/* modal */}
         {isOpenModal && <div>modal</div>}
       </div>
