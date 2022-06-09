@@ -7,9 +7,9 @@ import Router from 'next/router'
 
 const GamePage: NextPage = () => {
   const [fetchedTweetData, setFetchedTweetData] = useState<tweetsObj>()
-  const [nowTweet, setNowTweet] = useState<string>('')
   const [tweetNumber, setTweetNumber] = useState<number>(0)
   const [form, setForm] = useState<string>('')
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false)
 
   const tweetStateValue = useRecoilValue(tweetDataState)
   const questionNumber = tweetNumber + 1
@@ -25,7 +25,6 @@ const GamePage: NextPage = () => {
       try {
         const fetchedTweet: tweetsObj = await tweetStateValue
         setFetchedTweetData(fetchedTweet)
-        setNowTweet(tweets[tweetNumber])
       } catch (e) {
         console.error(e)
       }
@@ -35,8 +34,13 @@ const GamePage: NextPage = () => {
 
   const judge = () => {
     if (form === tweets[tweetNumber]) {
-      setTweetNumber((tweetNumber) => tweetNumber + 1)
-      setForm('')
+      if (tweetNumber === tweets.length) {
+        setIsOpenModal(true)
+      } else {
+        setTweetNumber((tweetNumber) => tweetNumber + 1)
+        setForm('')
+        console.log('Success')
+      }
       console.log('Success')
     } else {
       console.log('failed')
@@ -62,10 +66,10 @@ const GamePage: NextPage = () => {
         </div>
         <div>
           <div>
-            <img src="" alt="" />
+            <img src={fetchedTweetData?.icon} alt="" />
           </div>
           <div>
-            <p>のツイート</p>
+            <p>{fetchedTweetData?.name}のツイート</p>
             <textarea
               placeholder={'入力してください'}
               value={form}
