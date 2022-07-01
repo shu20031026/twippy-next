@@ -4,7 +4,6 @@ import { twippyApi } from '~/apis/twippyApi'
 import { tweetsObj } from '~/types/tweetDataTypes'
 import { useSetRecoilState } from 'recoil'
 import { tweetDataState } from '~/grobalStates/atoms'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 const HomePage: NextPage = () => {
