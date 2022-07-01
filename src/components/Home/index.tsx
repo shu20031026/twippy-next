@@ -5,10 +5,12 @@ import { tweetsObj } from '~/types/tweetDataTypes'
 import { useSetRecoilState } from 'recoil'
 import { tweetDataState } from '~/grobalStates/atoms'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 const HomePage: NextPage = () => {
   const [userName, setUserName] = useState<string>('')
   const setTweetData = useSetRecoilState<tweetsObj>(tweetDataState)
+  const router = useRouter()
 
   const fetchUserData = async (screenName: string) => {
     try {
@@ -17,6 +19,18 @@ const HomePage: NextPage = () => {
       console.log(fetchData)
     } catch (e) {
       console.log(e)
+      window.alert(
+        'ユーザーが確認できませんでした。スクリーンネームが間違っていないか再度確認してください',
+      )
+    }
+  }
+
+  const certification = async () => {
+    try {
+      await fetchUserData(userName)
+      router.replace('/game')
+    } catch (e) {
+      console.error(e)
       window.alert(
         'ユーザーが確認できませんでした。スクリーンネームが間違っていないか再度確認してください',
       )
@@ -35,10 +49,7 @@ const HomePage: NextPage = () => {
             setUserName(e.target.value)
           }}
         />
-        <button onClick={() => fetchUserData(userName)}>ゲーム開始</button>
-        <Link href="/game">
-          <button>/geme</button>
-        </Link>
+        <button onClick={() => certification()}>ゲーム開始</button>
       </div>
     </>
   )
